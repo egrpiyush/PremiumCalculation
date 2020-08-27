@@ -16,17 +16,15 @@ export class CalculationPremiumComponent implements OnInit {
   currentDate: moment.Moment = moment();
   public occupations: Occupation[] = [];
   public premiumCalculationInput = new PremiumCalculationInput();
+  public txtName: string= "Test 1";
   monthlyPremiumAmount: number = 0;
   constructor(private calculatePremiumService: CalculatePremiumService) { }
-
-  ngOnInit() {
+   
+  ngOnInit() {    
+    this.premiumCalculationInput.name = "Test";
     this.calculatePremiumService.getOccupations().subscribe((occupations) => {
       this.occupations = occupations;
     })
-  }
-
-  onCoverAmountChanged(coverAmount: any){
-    this.premiumCalculationInput.coverAmount = coverAmount;    
   }
 
   onOccupationSelected(occupationId: any){
@@ -40,6 +38,7 @@ export class CalculationPremiumComponent implements OnInit {
   onDOBSelected(dob: any){
     var endDate = moment(dob)
     this.premiumCalculationInput.age = this.currentDate.diff(endDate, 'years'); 
+    console.log (this.premiumCalculationInput.age);
   }
 
 }

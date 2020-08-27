@@ -1,35 +1,78 @@
 <div class="container">
   <h2>Calculate Monthly Premium</h2>
-  <form>
 
-    <div class="form-group">
-      <label for="name">Name:</label>
-      <input type="text" required class="form-control" placeholder="Enter name" name="name">
-    </div>
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input
+      id="name"
+      type="text"
+      required
+      minlength="1"
+      class="form-control"
+      (input) = 'premiumCalculationInput.name = $event.target.value'
+      name="name"
+    />
+    <span style="color: red">
+      <span *ngIf="premiumCalculationInput.name === undefined || premiumCalculationInput.name.length === 0">
+        Name is required.</span>
+    </span>
+  </div>
 
-    <div class="form-group">
-      <label for="dob">Date of birth:</label>
-      <input type="date" (change)="onDOBSelected($event.target.value)" required class="form-control" placeholder="Select date of birth" name="dob">
-    </div>
+  <div class="form-group">
+    <label for="dob">Date of birth:</label>
+    <input
+      type="date"
+      (input)="onDOBSelected($event.target.value)"
+      required
+      class="form-control"
+      placeholder="Select date of birth"
+      name="dob"
+    />
+    <span style="color: red">
+      <span *ngIf="premiumCalculationInput.age === 0">
+        Please select a valid Date of birth.</span>
+    </span>
+  </div>
 
-    <div class="form-group">
-      <label for="coverAmount">Cover amount:</label>
-      <input type="number" (change)="onCoverAmountChanged($event.target.value)" required class="form-control" placeholder="Enter date of birth" name="coverAmount">
-    </div>
+  <div class="form-group">
+    <label for="coverAmount">Death cover amount:</label>
+    <input
+      type="number"
+      required
+      class="form-control"
+      placeholder="Enter death amount"
+      (input) = 'premiumCalculationInput.coverAmount = $event.target.value'
+      name="coverAmount"
+    />
+    <span style="color: red">
+      <span *ngIf="premiumCalculationInput.coverAmount === 0">
+        Death cover amount is required.</span>
+    </span>    
+  </div>
 
-    <div class="form-group">
-      <label for="occupation">Occupation:</label>
-      <select (change)="onOccupationSelected($event.target.value)">
-        <option value="0">--All--</option>
-        <option *ngFor="let occupation of occupations" value={{occupation.id}}>
-          {{occupation.name}}
-        </option>
-      </select>
-    </div>
+  <div class="form-group">
+    <label for="occupation">Occupation:</label>
+    <select [disabled]="premiumCalculationInput.age == undefined || premiumCalculationInput.coverAmount == undefined ||
+     premiumCalculationInput.age === 0 || premiumCalculationInput.coverAmount === 0 || 
+     premiumCalculationInput.name === undefined || premiumCalculationInput.name.length === 0" 
+     (change)="onOccupationSelected($event.target.value)">
+      <option value="0">--All--</option>
+      <option
+        *ngFor="let occupation of occupations"
+        value="{{ occupation.id }}"
+      >
+        {{ occupation.name }}
+      </option>
+    </select>
+    <span style="color: red">
+      <span *ngIf="premiumCalculationInput.occupationId === 0">
+        Please select an occupation.</span>
+    </span>    
+  </div>
 
-    <div class="form-group">
-      <strong>Monthly Premium:</strong> {{ monthlyPremiumAmount | currency}}
-    </div>    
-    
-  </form>
+  <div class="form-group">
+    <h4>
+      <strong>Monthly Premium:</strong> {{ monthlyPremiumAmount | currency }}
+    </h4>
+  </div>
 </div>
