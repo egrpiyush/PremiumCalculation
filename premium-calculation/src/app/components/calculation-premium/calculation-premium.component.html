@@ -1,23 +1,30 @@
-<form [formGroup]="profileForm">
+<div class="form-group">
+  <label>
+    Name:
+    <input required minlength="1"  type="text" formControlName="name">
+  </label>
+</div>
+<div class="form-group">
+  <label>
+    Date of birth:
+    <input required  type="text" formControlName="dob">
+  </label>
+</div>
+<div class="form-group">
+  <label>
+    Cover amount:
+    <input required minlength="4"  type="text" formControlName="coverAmount">
+  </label>
+</div>
 
-    <label>
-        Name:
-        <input required minlength="1"  type="text" formControlName="name">
-      </label>    
-
-      <label>
-        Date of birth:
-        <input required  type="text" formControlName="dob">
-      </label>
-
-    <label>
-      Cover amount:
-      <input required minlength="4"  type="text" formControlName="coverAmount">
-    </label>
-
-    <label>
-        Occupation:
-        <input type="text" formControlName="occupation">
-      </label>
-  
-  </form>
+<div class="form-group">
+  <label>
+    Occupation:
+    <select (change)="onOccupationSelected($event.target.value)">
+        <option value="0">--All--</option>
+        <option *ngFor="let occupation of occupations" value={{occupation.id}}>
+          {{occupation.name}}
+        </option>
+      </select>
+  </label>
+</div>

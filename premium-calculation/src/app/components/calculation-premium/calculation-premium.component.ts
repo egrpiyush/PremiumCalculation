@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Occupation } from '../../../app/models/occupation'
+import { CalculatePremiumService } from '../../services/calculate-premium.service';
 
 @Component({
   selector: 'app-calculation-premium',
@@ -14,10 +16,19 @@ export class CalculationPremiumComponent implements OnInit {
     coverAmount: new FormControl(''),
     occupation: new FormControl('')
   });
+  public occupations: Occupation[] = [];
+  constructor(private calculatePremiumService: CalculatePremiumService) { }
 
-  constructor() { }
+  ngOnInit() {
 
-  ngOnInit(): void {
+    this.calculatePremiumService.getOccupations().subscribe((o) => {
+      this.occupations = o;
+    })
+
+  }
+
+  onOccupationSelected(occupationId: any){
+    debugger;
   }
 
 }
