@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { CalculationPremiumComponent } from './components/calculation-premium/calculation-premium.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { FooterComponent } from './components/shared/footer/footer.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

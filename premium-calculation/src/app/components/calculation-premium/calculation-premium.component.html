@@ -1,18 +1,22 @@
 <div class="container">
-  <h2>Vertical (basic) form</h2>
-  <form action="/action_page.php">
+  <h2>Calculate Monthly Premium</h2>
+  <form>
+
     <div class="form-group">
       <label for="name">Name:</label>
       <input type="text" required class="form-control" placeholder="Enter name" name="name">
     </div>
+
     <div class="form-group">
       <label for="dob">Date of birth:</label>
-      <input required class="form-control" placeholder="Enter date of birth" name="dob">
+      <input type="date" (change)="onDOBSelected($event.target.value)" required class="form-control" placeholder="Select date of birth" name="dob">
     </div>
+
     <div class="form-group">
-      <label for="coverAmount">Cover amount::</label>
-      <input type="number" required class="form-control" placeholder="Enter date of birth" name="coverAmount">
+      <label for="coverAmount">Cover amount:</label>
+      <input type="number" (change)="onCoverAmountChanged($event.target.value)" required class="form-control" placeholder="Enter date of birth" name="coverAmount">
     </div>
+
     <div class="form-group">
       <label for="occupation">Occupation:</label>
       <select (change)="onOccupationSelected($event.target.value)">
@@ -22,6 +26,10 @@
         </option>
       </select>
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+
+    <div class="form-group">
+      <strong>Monthly Premium:</strong> {{ monthlyPremiumAmount | currency}}
+    </div>    
+    
   </form>
 </div>
