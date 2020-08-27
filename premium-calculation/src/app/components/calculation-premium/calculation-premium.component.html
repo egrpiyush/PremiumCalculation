@@ -1,30 +1,27 @@
-<div class="form-group">
-  <label>
-    Name:
-    <input required minlength="1"  type="text" formControlName="name">
-  </label>
-</div>
-<div class="form-group">
-  <label>
-    Date of birth:
-    <input required  type="text" formControlName="dob">
-  </label>
-</div>
-<div class="form-group">
-  <label>
-    Cover amount:
-    <input required minlength="4"  type="text" formControlName="coverAmount">
-  </label>
-</div>
-
-<div class="form-group">
-  <label>
-    Occupation:
-    <select (change)="onOccupationSelected($event.target.value)">
+<div class="container">
+  <h2>Vertical (basic) form</h2>
+  <form action="/action_page.php">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" required class="form-control" placeholder="Enter name" name="name">
+    </div>
+    <div class="form-group">
+      <label for="dob">Date of birth:</label>
+      <input required class="form-control" placeholder="Enter date of birth" name="dob">
+    </div>
+    <div class="form-group">
+      <label for="coverAmount">Cover amount::</label>
+      <input type="number" required class="form-control" placeholder="Enter date of birth" name="coverAmount">
+    </div>
+    <div class="form-group">
+      <label for="occupation">Occupation:</label>
+      <select (change)="onOccupationSelected($event.target.value)">
         <option value="0">--All--</option>
         <option *ngFor="let occupation of occupations" value={{occupation.id}}>
           {{occupation.name}}
         </option>
       </select>
-  </label>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
 </div>

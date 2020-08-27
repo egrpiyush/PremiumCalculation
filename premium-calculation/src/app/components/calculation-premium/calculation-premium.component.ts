@@ -21,14 +21,14 @@ export class CalculationPremiumComponent implements OnInit {
 
   ngOnInit() {
 
-    this.calculatePremiumService.getOccupations().subscribe((o) => {
-      this.occupations = o;
+    this.calculatePremiumService.getOccupations().subscribe((occupations) => {
+      this.occupations = occupations;
     })
 
   }
 
   onOccupationSelected(occupationId: any){
-    debugger;
+
   }
 
 }
